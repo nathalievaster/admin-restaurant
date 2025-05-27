@@ -20,7 +20,7 @@ async function loginAdmin(e) {
         return;
     }
 
-     // Töm tidigare felmeddelande
+    // Töm tidigare felmeddelande
     errorMsg.textContent = "";
 
     let user = {
@@ -32,20 +32,24 @@ async function loginAdmin(e) {
         const resp = await fetch("http://localhost:5000/api/login", {
             method: "POST",
             headers: {
-                "content-type": "application/json"
+                "Content-Type": "application/json"
             },
             body: JSON.stringify(user)
-        })
+        });
+
+        const data = await resp.json();
 
         if (resp.ok) {
-            const data = await resp.json();
-            console.log(data)
+            localStorage.setItem("token", data.token);
+            window.location.href = "index.html"; 
         } else {
-            throw error;
+            errorMsg.textContent = data.message || "Felaktigt användarnamn eller lösenord";
         }
     } catch (error) {
-        console.log("Felaktivt användarnamn eller lösenord");
+        errorMsg.textContent = "Något gick fel. Försök igen.";
+        console.error(error);
     }
+
 }
 
 // Koppla formuläret till funktionen

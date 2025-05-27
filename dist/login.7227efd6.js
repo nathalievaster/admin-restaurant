@@ -160,11 +160,11 @@
       });
     }
   }
-})({"8K41P":[function(require,module,exports,__globalThis) {
+})({"lkdae":[function(require,module,exports,__globalThis) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
-var HMR_SERVER_PORT = 53110;
+var HMR_SERVER_PORT = 53515;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "439701173a9199ea";
 var HMR_USE_SSE = false;
@@ -694,22 +694,24 @@ async function loginAdmin(e) {
         const resp = await fetch("http://localhost:5000/api/login", {
             method: "POST",
             headers: {
-                "content-type": "application/json"
+                "Content-Type": "application/json"
             },
             body: JSON.stringify(user)
         });
+        const data = await resp.json();
         if (resp.ok) {
-            const data = await resp.json();
-            console.log(data);
-        } else throw error;
-    } catch (error1) {
-        console.log("Felaktivt anv\xe4ndarnamn eller l\xf6senord");
+            localStorage.setItem("token", data.token);
+            window.location.href = "index.html";
+        } else errorMsg.textContent = data.message || "Felaktigt anv\xe4ndarnamn eller l\xf6senord";
+    } catch (error) {
+        errorMsg.textContent = "N\xe5got gick fel. F\xf6rs\xf6k igen.";
+        console.error(error);
     }
 }
 // Koppla formuläret till funktionen
 const form = document.getElementById("login-form");
 form.addEventListener("submit", loginAdmin);
 
-},{}]},["8K41P","aTIl8"], "aTIl8", "parcelRequire3287", {})
+},{}]},["lkdae","aTIl8"], "aTIl8", "parcelRequire3287", {})
 
 //# sourceMappingURL=login.7227efd6.js.map
