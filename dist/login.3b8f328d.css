@@ -6,6 +6,8 @@ body {
 .login-container {
   background: #fff;
   border-radius: 1rem;
+  max-width: 450px;
+  margin: 10em auto 0;
   padding: 2rem;
   box-shadow: 0 0 10px #0000001a;
 }
@@ -77,4 +79,4 @@ nav {
 .logout-button:hover {
   background-color: #e60000;
 }
-/*# sourceMappingURL=login.3b8f328d.css.map */
+/*# sourceMappingURL=admin-restaurant.3b8f328d.css.map */
