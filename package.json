@@ -1,9 +1,8 @@
 {
   "name": "admin-restaurant",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel src/login.html"
   },
   "keywords": [],
   "author": "",
@@ -11,5 +10,8 @@
   "description": "",
   "devDependencies": {
     "parcel": "^2.15.2"
+  },
+  "dependencies": {
+    "sass": "^1.89.0"
   }
 }

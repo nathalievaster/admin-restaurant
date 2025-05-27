@@ -1,0 +1,32 @@
+body {
+  background-color: #f4f4f4;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  display: flex;
+}
+
+.login-container {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 0 10px #0000001a;
+}
+
+form {
+  flex-direction: column;
+  display: flex;
+}
+
+form input, button {
+  margin-bottom: 1rem;
+  padding: .5rem;
+  font-size: 1rem;
+}
+
+form .error {
+  color: red;
+  font-size: .9rem;
+}
+/*# sourceMappingURL=login.3b8f328d.css.map */
