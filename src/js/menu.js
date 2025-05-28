@@ -1,6 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
   const token = localStorage.getItem("token");
   const menuList = document.getElementById("menu-list");
+  const addForm = document.getElementById("add-form");
+  
+  if (!token) {
+    window.location.href = "login.html";
+    return;
+  }
 
   async function fetchMenu() {
     try {
@@ -69,5 +75,36 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Lägg till nytt menyobjekt
+  addForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const userInput = {
+      name: document.getElementById("name").value.trim(),
+      description: document.getElementById("description").value.trim(),
+      price: parseFloat(document.getElementById("price").value),
+      category: document.getElementById("category").value.trim(),
+      available: document.getElementById("available").checked ? 1 : 0,
+    };
+
+    try {
+      const resp = await fetch("http://localhost:5000/api/menu", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(userInput),
+      });
+
+      if (!resp.ok) throw new Error("Kunde inte lägga till menyobjekt.");
+      addForm.reset();
+      fetchMenu(); // uppdatera listan
+    } catch (err) {
+      alert(err.message);
+    }
+  });
+
+  // Starta sidan
   fetchMenu();
 });

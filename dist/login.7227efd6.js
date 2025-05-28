@@ -699,9 +699,11 @@ async function loginAdmin(e) {
             body: JSON.stringify(user)
         });
         const data = await resp.json();
+        console.log("Login response:", data);
         if (resp.ok) {
-            localStorage.setItem("token", data.token);
-            window.location.href = "index.html";
+            const token = data.response.token;
+            localStorage.setItem("token", token);
+            console.log("Token sparad i localstorage:", token);
         } else errorMsg.textContent = data.message || "Felaktigt anv\xe4ndarnamn eller l\xf6senord";
     } catch (error) {
         errorMsg.textContent = "N\xe5got gick fel. F\xf6rs\xf6k igen.";

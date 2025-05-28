@@ -25,7 +25,21 @@
     </header>
 
     <main>
-        <h1>Meny</h1>
+        <h2>Lägg till menyobjekt</h2>
+        
+        <form id="add-form">
+            <input type="text" id="name" placeholder="Namn"/>
+            <input type="text" id="description" placeholder="Beskrivning" />
+            <input type="number" id="price" placeholder="Pris"/>
+            <input type="text" id="category" placeholder="Kategori"/>
+            <label>
+                Tillgänglig:
+                <input type="checkbox" id="available" checked />
+            </label>
+            <button type="submit">Lägg till</button>
+        </form>
+
+        <h2>Meny</h1>
         <section id="menu-list"></section>
     </main>
 

@@ -38,10 +38,13 @@ async function loginAdmin(e) {
         });
 
         const data = await resp.json();
+        console.log("Login response:", data);
 
         if (resp.ok) {
-            localStorage.setItem("token", data.token);
-            window.location.href = "index.html"; 
+            const token = data.response.token;
+            localStorage.setItem("token", token);
+            console.log("Token sparad i localstorage:", token);
+            
         } else {
             errorMsg.textContent = data.message || "Felaktigt användarnamn eller lösenord";
         }
