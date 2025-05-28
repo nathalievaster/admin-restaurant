@@ -36,24 +36,66 @@ document.addEventListener("DOMContentLoaded", () => {
       .map(
         (item) => `
         <article class="menu-item">
-          <h3>${item.name}</h3>
-          <p>${item.description || "Ingen beskrivning"}</p>
-          <p><strong>Pris:</strong> ${item.price} kr</p>
-          <p><strong>Kategori:</strong> ${item.category}</p>
-          <p><strong>Tillgänglig:</strong> ${item.available ? "Ja" : "Nej"}</p>
-          <button data-id="${item.id}" class="edit-btn">Redigera</button>
-          <button data-id="${item.id}" class="delete-btn">Radera</button>
-        </article>`
-      )
+        <h3>${item.name}</h3>
+        <p>${item.description || "Ingen beskrivning"}</p>
+        <p><strong>Pris:</strong> ${item.price} kr</p>
+        <p><strong>Kategori:</strong> ${item.category}</p>
+        <p><strong>Tillgänglig:</strong> ${item.available ? "Ja" : "Nej"}</p>
+        <button data-id="${item.id}" class="edit-btn">Redigera</button>
+        <button data-id="${item.id}" class="delete-btn">Radera</button>
+        <form class="edit-form" data-id="${item.id}" style="display: none;">
+          <input type="text" name="name" value="${item.name}" required />
+          <input type="text" name="description" value="${item.description || ''}" />
+          <input type="number" name="price" value="${item.price}" required />
+          <input type="text" name="category" value="${item.category}" required />
+          <label>
+            Tillgänglig:
+            <input type="checkbox" name="available" ${item.available ? "checked" : ""} />
+          </label>
+          <button type="submit">Spara</button>
+        </form>
+      </article>`
+    )
       .join("");
 
-      // Radera menyobjekt
+      // Lyssna på alla klick inom menylistan
     menuList.addEventListener("click", (e) => {
       const id = e.target.dataset.id;
+
+      // Om användaren klickar på Radera-knappen
       if (e.target.classList.contains("delete-btn")) {
         deleteMenuItem(id);
       }
+      
+      // Om användaren klickar på Redigera-knappen
+        if (e.target.classList.contains("edit-btn")) {
+            // Hitta det objekt som klicket är på
+            const parent = e.target.closest(".menu-item");
+            // Hämta formuläret för redigering
+            const form = parent.querySelector(".edit-form");
+            // Visa/göm redigeringsformuläret
+            form.style.display = form.style.display === "none" ? "block" : "none";
+        }
     });
+
+    menuList.addEventListener("submit", (e) => {
+  if (e.target.classList.contains("edit-form")) {
+    e.preventDefault();
+    const form = e.target;
+    const id = form.dataset.id;
+
+    const updated = {
+      name: form.name.value.trim(),
+      description: form.description.value.trim(),
+      price: parseFloat(form.price.value),
+      category: form.category.value.trim(),
+      available: form.available.checked ? 1 : 0,
+    };
+
+    updateMenuItem(id, updated);
+  }
+});
+
   }
 
   async function deleteMenuItem(id) {
@@ -104,6 +146,26 @@ document.addEventListener("DOMContentLoaded", () => {
       alert(err.message);
     }
   });
+
+  async function updateMenuItem(id, updatedData) {
+  try {
+    const resp = await fetch(`http://localhost:5000/api/menu/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(updatedData),
+    });
+
+    if (!resp.ok) throw new Error("Kunde inte uppdatera menyobjekt.");
+
+    fetchMenu(); // Ladda om menyn
+  } catch (err) {
+    alert(err.message);
+  }
+}
+
 
   // Starta sidan
   fetchMenu();
