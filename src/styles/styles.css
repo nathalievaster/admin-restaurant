@@ -81,3 +81,58 @@ nav{
 .logout-button:hover {
   background-color: #e60000;
 }
+
+.container {
+  max-width: 900px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Sidrubriker */
+.container h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.container h2 {
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+/* Meddelandelista */
+#messages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Enskilt meddelande */
+.message {
+  background-color: #fafafa;
+  border-left: 5px solid #0077cc;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
+}
+
+.message h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #0077cc;
+  padding: 0.2rem;
+}
+
+.message p {
+  margin: 0.3rem 0;
+  padding: 0.2rem;
+}
+/* Felmeddelande */
+.error {
+  color: red;
+  font-weight: bold;
+  margin-top: 1rem;
+}

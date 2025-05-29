@@ -79,4 +79,56 @@ nav {
 .logout-button:hover {
   background-color: #e60000;
 }
-/*# sourceMappingURL=login.3b8f328d.css.map */
+
+.container {
+  background: #fff;
+  border-radius: 1rem;
+  max-width: 900px;
+  margin: 4rem auto;
+  padding: 2rem;
+  box-shadow: 0 0 15px #0000001a;
+}
+
+.container h1 {
+  margin-bottom: .5rem;
+  font-size: 2rem;
+}
+
+.container h2 {
+  color: #333;
+  margin-bottom: 2rem;
+  font-size: 1.4rem;
+}
+
+#messages-list {
+  flex-direction: column;
+  gap: 1.5rem;
+  display: flex;
+}
+
+.message {
+  background-color: #fafafa;
+  border-left: 5px solid #07c;
+  border-radius: .5rem;
+  padding: 2rem;
+  box-shadow: 0 0 4px #0000000d;
+}
+
+.message h3 {
+  color: #07c;
+  margin: 0;
+  padding: .2rem;
+  font-size: 1.1rem;
+}
+
+.message p {
+  margin: .3rem 0;
+  padding: .2rem;
+}
+
+.error {
+  color: red;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+/*# sourceMappingURL=admin-restaurant.3b8f328d.css.map */
