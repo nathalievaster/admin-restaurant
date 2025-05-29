@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuList = document.getElementById("menu-list");
   const addForm = document.getElementById("add-form");
   
+  // Om ingen token finns, dirigera till login.html
   if (!token) {
     window.location.href = "login.html";
     return;
@@ -43,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <p><strong>Tillgänglig:</strong> ${item.available ? "Ja" : "Nej"}</p>
         <button data-id="${item.id}" class="edit-btn">Redigera</button>
         <button data-id="${item.id}" class="delete-btn">Radera</button>
+        <!--Formulär för att redigera objekt--!>
         <form class="edit-form" data-id="${item.id}" style="display: none;">
           <input type="text" name="name" value="${item.name}" required />
           <input type="text" name="description" value="${item.description || ''}" />
@@ -78,6 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // Uppdatera objekt
     menuList.addEventListener("submit", (e) => {
   if (e.target.classList.contains("edit-form")) {
     e.preventDefault();
@@ -97,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
   }
-
+// Radera objekt
   async function deleteMenuItem(id) {
     if (!confirm("Är du säker på att du vill radera detta menyobjekt?")) return;
 
