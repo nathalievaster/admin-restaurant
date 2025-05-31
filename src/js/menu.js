@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function fetchMenu() {
     try {
-      const resp = await fetch("http://localhost:5000/api/menu", {
+      const resp = await fetch("https://rest-restaurant.onrender.com/api/menu", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!confirm("Är du säker på att du vill radera detta menyobjekt?")) return;
 
     try {
-      const resp = await fetch(`http://localhost:5000/api/menu/${id}`, {
+      const resp = await fetch(`https://rest-restaurant.onrender.com/api/menu/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     try {
-      const resp = await fetch("http://localhost:5000/api/menu", {
+      const resp = await fetch("https://rest-restaurant.onrender.com/api/menu", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function updateMenuItem(id, updatedData) {
   try {
-    const resp = await fetch(`http://localhost:5000/api/menu/${id}`, {
+    const resp = await fetch(`https://rest-restaurant.onrender.com/api/menu/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

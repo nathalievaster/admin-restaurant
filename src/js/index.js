@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Hämta meddelanden
   async function fetchMessages() {
     try {
-      const resp = await fetch("http://localhost:5000/api/messages", {
+      const resp = await fetch("https://rest-restaurant.onrender.com/api/messages", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

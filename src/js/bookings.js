@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
    */
   async function fetchBookings() {
     try {
-      const resp = await fetch("http://localhost:5000/api/bookings", {
+      const resp = await fetch("https://rest-restaurant.onrender.com/api/bookings", {
         headers: {
           Authorization: `Bearer ${token}`, // JWT skickas med i headern
         },
@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
       };
 
       try {
-        const resp = await fetch(`http://localhost:5000/api/bookings/${id}`, {
+        const resp = await fetch(`https://rest-restaurant.onrender.com/api/bookings/${id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
