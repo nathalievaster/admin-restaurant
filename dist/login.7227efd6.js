@@ -668,12 +668,16 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"aTIl8":[function(require,module,exports,__globalThis) {
 async function loginAdmin(e) {
-    e.preventDefault();
+    e.preventDefault(); // Förhindrar standardformulärbeteende så att sidan inte laddas om
+    // Hämta inmatningsfälten
     let usernameInput = document.getElementById("username");
     let passwordInput = document.getElementById("password");
+    // Rensa och hämta värden
     const username = usernameInput.value.trim();
     const password = passwordInput.value.trim();
+    // Elementet som felmeddelanden kommer ligga i
     const errorMsg = document.getElementById("error-msg");
+    // Kontrollera att fälten är ifyllda
     if (!username && !password) {
         errorMsg.textContent = "Fyll i b\xe5de anv\xe4ndarnamn och l\xf6senord";
         return;
@@ -686,10 +690,12 @@ async function loginAdmin(e) {
     }
     // Töm tidigare felmeddelande
     errorMsg.textContent = "";
+    // Skapa objekt med inloggningsuppgifter
     let user = {
         username: usernameInput.value,
         password: passwordInput.value
     };
+    // Skicka POST-förfrågan till api
     try {
         const resp = await fetch("https://rest-restaurant.onrender.com/api/login", {
             method: "POST",
@@ -698,12 +704,16 @@ async function loginAdmin(e) {
             },
             body: JSON.stringify(user)
         });
+        // Konvertera resp till json
         const data = await resp.json();
+        // Inloggningen lyckas, så sparas token och omdirigeras till index.html
         if (resp.ok) {
             const token = data.response.token;
             localStorage.setItem("token", token);
             window.location.href = "index.html";
+        // Fel, visa felmeddelande
         } else errorMsg.textContent = data.message || "Felaktigt anv\xe4ndarnamn eller l\xf6senord";
+    // Fångar nätverksfel
     } catch (error) {
         errorMsg.textContent = "N\xe5got gick fel. F\xf6rs\xf6k igen.";
         console.error(error);
