@@ -1,3 +1,10 @@
+/* Grundinställningar */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
@@ -5,6 +12,7 @@ body {
   padding: 0;
 }
 
+/* Layoutcontainers */
 .login-container,
 .container,
 main {
@@ -16,6 +24,7 @@ main {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
+/* Formulär */
 form {
   display: flex;
   flex-direction: column;
@@ -30,6 +39,7 @@ button {
   font-size: 1rem;
 }
 
+/* Header & Navigering */
 header {
   background-color: #1a1a1a;
   color: white;
@@ -58,6 +68,8 @@ nav {
   gap: 1.5rem;
   flex-wrap: wrap;
   justify-content: center;
+  padding: 0;
+  margin: 0;
 }
 
 .nav-links li a {
@@ -71,6 +83,7 @@ nav {
   color: #ffcc00;
 }
 
+/* Logout-knapp */
 .logout-button {
   background-color: #ff4d4d;
   border: none;
@@ -86,6 +99,7 @@ nav {
   background-color: #e60000;
 }
 
+/* Rubriker */
 .container h1,
 main h2 {
   font-size: 1.5rem;
@@ -155,8 +169,11 @@ form .error,
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem;
-  margin: 2rem;
-  padding: 1rem;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  max-width: 100%;
+  overflow: hidden;
+  background-color: #cc0000;
 }
 
 .booking-item {
@@ -166,6 +183,10 @@ form .error,
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
 }
 
 .booking-item:hover {
@@ -243,6 +264,7 @@ form .error,
   background-color: #218838;
 }
 
+/* Media Queries */
 @media screen and (min-width: 500px) {
   .edit-btn,
   .delete-btn,
@@ -255,7 +277,7 @@ form .error,
 
 @media screen and (min-width: 600px) {
   #booking-list {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -278,7 +300,7 @@ form .error,
   }
 
   #booking-list {
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -288,7 +310,11 @@ form .error,
     padding: 1.5rem;
   }
 
+  #booking-list {
+    padding: 0;
+  }
+
   .booking-item {
-    padding: 1rem;
+    padding: 0rem;
   }
 }
