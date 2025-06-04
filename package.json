@@ -2,7 +2,8 @@
   "name": "admin-restaurant",
   "version": "1.0.0",
   "scripts": {
-    "start": "parcel src/login.html"
+    "start": "parcel src/login.html",
+  "build": "parcel build src/login.html"
   },
   "keywords": [],
   "author": "",
