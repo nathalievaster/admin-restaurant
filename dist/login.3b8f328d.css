@@ -1,15 +1,17 @@
 body {
   background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
   font-family: Arial, sans-serif;
 }
 
-.login-container {
+.login-container, .container, main {
   background: #fff;
   border-radius: 1rem;
-  max-width: 450px;
-  margin: 10em auto 0;
+  max-width: 90%;
+  margin: 4rem auto;
   padding: 2rem;
-  box-shadow: 0 0 10px #0000001a;
+  box-shadow: 0 0 15px #0000001a;
 }
 
 form {
@@ -18,14 +20,11 @@ form {
 }
 
 form input, button {
+  box-sizing: border-box;
+  width: 100%;
   margin-bottom: 1rem;
   padding: .5rem;
   font-size: 1rem;
-}
-
-form .error {
-  color: red;
-  font-size: .9rem;
 }
 
 header {
@@ -36,8 +35,10 @@ header {
 }
 
 nav {
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
   display: flex;
 }
 
@@ -49,6 +50,8 @@ nav {
 }
 
 .nav-links {
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1.5rem;
   list-style: none;
   display: flex;
@@ -80,33 +83,38 @@ nav {
   background-color: #e60000;
 }
 
-main {
-  background: #fff;
-  border-radius: 1rem;
-  max-width: 900px;
-  margin: 3rem auto;
-  padding: 2rem;
-  box-shadow: 0 4px 12px #00000014;
-}
-
-.container {
-  background: #fff;
-  border-radius: 1rem;
-  max-width: 900px;
-  margin: 4rem auto;
-  padding: 2rem;
-  box-shadow: 0 0 15px #0000001a;
-}
-
-.container h1 {
-  margin-bottom: .5rem;
-  font-size: 2rem;
+.container h1, main h2 {
+  text-align: center;
+  font-size: 1.5rem;
 }
 
 .container h2 {
   color: #333;
   margin-bottom: 2rem;
   font-size: 1.4rem;
+}
+
+main h2 {
+  color: #1a1a1a;
+  margin-top: 2rem;
+  position: relative;
+}
+
+main h2:after {
+  content: "";
+  background: #07c;
+  border-radius: 2px;
+  width: 60px;
+  height: 4px;
+  margin: .5rem auto 0;
+  display: block;
+}
+
+form .error, .error {
+  color: red;
+  margin-top: 1rem;
+  font-size: .9rem;
+  font-weight: bold;
 }
 
 #messages-list {
@@ -135,14 +143,8 @@ main {
   padding: .2rem;
 }
 
-.error {
-  color: red;
-  margin-top: 1rem;
-  font-weight: bold;
-}
-
 #booking-list {
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: 1fr;
   gap: 1.5rem;
   margin: 2rem;
   padding: 1rem;
@@ -174,25 +176,25 @@ main {
   font-size: .95rem;
 }
 
-.edit-btn, .delete-btn {
+.edit-btn, .delete-btn, .logout-button {
   color: #fff;
   cursor: pointer;
   background-color: #07c;
   border: none;
   border-radius: 6px;
-  margin-top: .7rem;
-  margin-right: .5rem;
+  width: 100%;
+  margin: .5rem 0;
   padding: .4rem .9rem;
   font-size: .9rem;
   transition: background-color .2s;
 }
 
-.delete-btn {
-  background-color: #ff4d4d;
-}
-
 .edit-btn:hover {
   background-color: #005fa3;
+}
+
+.delete-btn {
+  background-color: #ff4d4d;
 }
 
 .delete-btn:hover {
@@ -212,7 +214,7 @@ main {
   width: 100%;
   margin-bottom: .8rem;
   padding: .5rem;
-  display: block;
+  font-size: .95rem;
 }
 
 .edit-form button {
@@ -229,21 +231,48 @@ main {
   background-color: #218838;
 }
 
-main h2 {
-  text-align: center;
-  color: #1a1a1a;
-  margin-top: 2rem;
-  font-size: 2rem;
-  position: relative;
+@media screen and (width >= 500px) {
+  .edit-btn, .delete-btn, .logout-button {
+    width: auto;
+    margin: .5rem .5rem 0 0;
+    display: inline-block;
+  }
 }
 
-main h2:after {
-  content: "";
-  background: #07c;
-  border-radius: 2px;
-  width: 60px;
-  height: 4px;
-  margin: .5rem auto 0;
-  display: block;
+@media screen and (width >= 600px) {
+  #booking-list {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
 }
-/*# sourceMappingURL=login.3b8f328d.css.map */
+
+@media screen and (width >= 768px) {
+  .container h1, main h2 {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (width >= 900px) {
+  .login-container, .container, main {
+    max-width: 900px;
+  }
+
+  nav {
+    flex-direction: row;
+  }
+
+  #booking-list {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+}
+
+@media screen and (width <= 480px) {
+  .login-container {
+    margin-top: 4em;
+    padding: 1.5rem;
+  }
+
+  .booking-item {
+    padding: 1rem;
+  }
+}
+/*# sourceMappingURL=admin-restaurant.3b8f328d.css.map */
