@@ -150,7 +150,6 @@ form .error, .error {
 }
 
 #booking-list {
-  background-color: #c00;
   grid-template-columns: 1fr;
   gap: 1.5rem;
   max-width: 100%;
